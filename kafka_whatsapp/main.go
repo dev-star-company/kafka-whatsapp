@@ -22,8 +22,8 @@ type kafka_whatsapper struct {
 }
 
 type SubResponse[T WhatsappMsg | Status] struct {
-	Message  Message[T]   `json:"message"`   // The message received from the topic
-	CommitFn func() error `json:"commit_fn"` // The commit function to call after processing the message
+	Message  Message[T]                                             `json:"message"`   // The message received from the topic
+	CommitFn func(ctx context.Context, msgs ...kafka.Message) error `json:"commit_fn"` // The commit function to call after processing the message
 }
 
 // ConsumerGroupId is the ID of the consumer group that will be used for subscribing to topics.

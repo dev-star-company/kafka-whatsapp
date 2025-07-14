@@ -49,7 +49,7 @@ func (p *kafka_whatsapper) SubToStatus(ctx context.Context) (<-chan SubResponse[
 				continue // skip messages from the same publisher
 			}
 			select {
-			case ch <- SubResponse[Status]{Message: status, CommitFn: func() error { return r.CommitMessages(ctx, msg) }}:
+			case ch <- SubResponse[Status]{Message: status, CommitFn: r.CommitMessages}:
 			case <-ctx.Done():
 				return
 			}
