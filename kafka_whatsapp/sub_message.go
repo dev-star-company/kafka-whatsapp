@@ -11,7 +11,7 @@ import (
 	"github.com/segmentio/kafka-go"
 )
 
-func (c *kafka_whatsapper) SubscribeToWhatsappMsg(ctx context.Context) (<-chan SubResponse[WhatsappMsg], error) {
+func (c *KafkaWhatsapper) SubscribeToWhatsappMsg(ctx context.Context) (<-chan SubResponse[WhatsappMsg], error) {
 	ch := make(chan SubResponse[WhatsappMsg])
 	conn, err := c.ConnectToTopic(topics.WHATSAPP_MESSAGES)
 	if err != nil {

@@ -11,7 +11,7 @@ import (
 	"github.com/segmentio/kafka-go"
 )
 
-func (p *kafka_whatsapper) SubToStatus(ctx context.Context) (<-chan SubResponse[Status], error) {
+func (p *KafkaWhatsapper) SubToStatus(ctx context.Context) (<-chan SubResponse[Status], error) {
 	ch := make(chan SubResponse[Status])
 	conn, err := p.ConnectToTopic(topics.WHATSAPP_STATUS)
 	if err != nil {

@@ -15,7 +15,7 @@ type Message[T WhatsappMsg | Status] struct {
 	Publisher string `json:"publisher"` // the name of the publisher
 }
 
-type kafka_whatsapper struct {
+type KafkaWhatsapper struct {
 	kafka_whatsapps sync.Map
 	consumerGroupID string
 	brokerUrl       string
@@ -30,8 +30,8 @@ type SubResponse[T WhatsappMsg | Status] struct {
 // It is used to ensure that multiple consumers can read from the same topic without duplicating messages.
 // It is important to set this ID when creating a new kafka_whatsapper instance.
 // Should be set to a unique value for each consumer group.
-func New(brokerUrl string, consumerGroupID string) *kafka_whatsapper {
-	return &kafka_whatsapper{
+func New(brokerUrl string, consumerGroupID string) *KafkaWhatsapper {
+	return &KafkaWhatsapper{
 		kafka_whatsapps: sync.Map{},
 		consumerGroupID: consumerGroupID,
 		brokerUrl:       brokerUrl,
@@ -39,7 +39,7 @@ func New(brokerUrl string, consumerGroupID string) *kafka_whatsapper {
 }
 
 // Use topics from topics package
-func (c *kafka_whatsapper) ConnectToTopic(topic topics.Topic) (*kafka.Conn, error) {
+func (c *KafkaWhatsapper) ConnectToTopic(topic topics.Topic) (*kafka.Conn, error) {
 	if conn, ok := c.kafka_whatsapps.Load(topic); ok {
 		return conn.(*kafka.Conn), nil
 	}
@@ -53,7 +53,7 @@ func (c *kafka_whatsapper) ConnectToTopic(topic topics.Topic) (*kafka.Conn, erro
 	return conn, nil
 }
 
-func (c *kafka_whatsapper) Connect(topic topics.Topic) (*kafka.Conn, error) {
+func (c *KafkaWhatsapper) Connect(topic topics.Topic) (*kafka.Conn, error) {
 	fmt.Println(c.brokerUrl, string(topic))
 	conn, err := kafka.DialLeader(context.Background(), "tcp", c.brokerUrl, string(topic), 0)
 	if err != nil {

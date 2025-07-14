@@ -54,7 +54,7 @@ func NewWhatsappMsg(uuid, from, client, recipient, messageType, message string, 
 	return msg, nil
 }
 
-func (p *kafka_whatsapper) PublishToWhatsappMsg(message Message[WhatsappMsg]) error {
+func (p *KafkaWhatsapper) PublishToWhatsappMsg(message Message[WhatsappMsg]) error {
 	conn, err := p.Connect(topics.WHATSAPP_MESSAGES)
 	if err != nil {
 		return err
