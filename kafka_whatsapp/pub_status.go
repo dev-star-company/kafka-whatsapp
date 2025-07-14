@@ -12,17 +12,20 @@ import (
 type Status struct {
 	Status string
 	Client string
+	At     time.Time
 }
 
-func NewStatus(status, client string) (*Status, error) {
+func NewStatus(status, client string, at time.Time) (*Status, error) {
 	fields := map[string]string{
 		"Status": "required",
 		"Client": "required",
+		"At":     "required",
 	}
 
 	msg := &Status{
 		Status: status,
 		Client: client,
+		At:     at,
 	}
 
 	if err := validate.Validate(fields, msg); err != nil {
