@@ -20,7 +20,7 @@ services:
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
       KAFKA_LOG_DIRS: /var/lib/kafka/data
-      KAFKA_LOG_RETENTION_HOURS: 168 # Keep logs (messages) for 7 days
+      KAFKA_LOG_RETENTION_HOURS: 48  # Keep logs (messages) for 2 days
       KAFKA_LOG_RETENTION_BYTES: -1  # Unlimited size until time-based deletion
       CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
     volumes:
