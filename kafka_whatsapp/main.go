@@ -9,7 +9,7 @@ import (
 	"github.com/segmentio/kafka-go"
 )
 
-type Message[T WhatsappMsg] struct {
+type Message[T WhatsappMsg | Status] struct {
 	Payload   T      `json:"object"`    // any of the SyncSomethingStruct types
 	Publisher string `json:"publisher"` // the name of the publisher
 }
@@ -20,7 +20,7 @@ type kafka_whatsapper struct {
 	brokerUrl       string
 }
 
-type SubResponse[T WhatsappMsg] struct {
+type SubResponse[T WhatsappMsg | Status] struct {
 	Message  Message[T]   `json:"message"`   // The message received from the topic
 	CommitFn func() error `json:"commit_fn"` // The commit function to call after processing the message
 }

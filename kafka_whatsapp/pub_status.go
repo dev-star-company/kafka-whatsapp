@@ -35,8 +35,8 @@ func NewStatus(status, client string, at time.Time) (*Status, error) {
 	return msg, nil
 }
 
-func (p *kafka_whatsapper) PublishToStatus(message Message[WhatsappMsg]) error {
-	conn, err := p.Connect(topics.WHATSAPP_MESSAGES)
+func (p *kafka_whatsapper) PublishToStatus(message Message[Status]) error {
+	conn, err := p.Connect(topics.WHATSAPP_STATUS)
 	if err != nil {
 		return err
 	}
