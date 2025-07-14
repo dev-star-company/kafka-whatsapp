@@ -50,7 +50,7 @@ func (c *kafka_whatsapper) SubscribeToWhatsappMsg(ctx context.Context) (<-chan S
 				continue // skip messages from the same publisher
 			}
 			select {
-			case ch <- SubResponse[WhatsappMsg]{Message: user, CommitFn: r.CommitMessages}:
+			case ch <- SubResponse[WhatsappMsg]{Message: user, CommitFn: func() error { return r.CommitMessages(ctx, msg) }}:
 			case <-ctx.Done():
 				return
 			}
