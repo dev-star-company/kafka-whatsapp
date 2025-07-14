@@ -3,8 +3,9 @@ package kafka_whatsapp
 import (
 	"context"
 	"fmt"
-	"kafka-whatsapp/topics"
 	"sync"
+
+	"github.com/dev-star-company/kafka-whatsapp/topics"
 
 	"github.com/segmentio/kafka-go"
 )

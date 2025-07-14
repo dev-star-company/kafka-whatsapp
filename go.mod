@@ -1,4 +1,4 @@
-module kafka-whatsapp
+module github.com/dev-star-company/github.com/dev-star-company/kafka-whatsapp
 
 go 1.24.1
 

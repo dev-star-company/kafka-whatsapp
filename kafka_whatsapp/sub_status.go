@@ -4,8 +4,9 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"kafka-whatsapp/topics"
 	"time"
+
+	"github.com/dev-star-company/kafka-whatsapp/topics"
 
 	"github.com/segmentio/kafka-go"
 )

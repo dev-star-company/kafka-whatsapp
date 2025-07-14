@@ -2,8 +2,9 @@ package kafka_whatsapp
 
 import (
 	"encoding/json"
-	"kafka-whatsapp/topics"
 	"time"
+
+	"github.com/dev-star-company/kafka-whatsapp/topics"
 
 	"github.com/dev-star-company/custom-validate/validate"
 	"github.com/segmentio/kafka-go"
