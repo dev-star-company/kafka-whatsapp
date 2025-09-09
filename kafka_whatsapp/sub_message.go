@@ -19,7 +19,7 @@ func (c *KafkaWhatsapper) SubscribeToWhatsappMsg(ctx context.Context) (<-chan Su
 	}
 
 	conn.SetReadDeadline(time.Now().Add(10 * time.Second))
-
+	
 	ctrl, err := conn.Controller()
 	if err != nil {
 		return nil, err
@@ -27,10 +27,11 @@ func (c *KafkaWhatsapper) SubscribeToWhatsappMsg(ctx context.Context) (<-chan Su
 	url := fmt.Sprintf("%s:%d", ctrl.Host, ctrl.Port)
 
 	r := kafka.NewReader(kafka.ReaderConfig{
-		Brokers:  []string{url},
-		GroupID:  c.consumerGroupID,
-		Topic:    string(topics.WHATSAPP_MESSAGES),
-		MaxBytes: 10 * 1024 * 1024, // 10 MB
+		Brokers:     []string{url},
+		GroupID:     c.consumerGroupID,
+		Topic:       string(topics.WHATSAPP_MESSAGES),
+		MaxBytes:    10 * 1024 * 1024, // 10 MB
+		StartOffset: kafka.LastOffset,
 	})
 
 	go func() {

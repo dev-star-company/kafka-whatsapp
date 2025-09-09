@@ -27,10 +27,11 @@ func (p *KafkaWhatsapper) SubToStatus(ctx context.Context) (<-chan SubResponse[S
 	url := fmt.Sprintf("%s:%d", ctrl.Host, ctrl.Port)
 
 	r := kafka.NewReader(kafka.ReaderConfig{
-		Brokers:  []string{url},
-		GroupID:  p.consumerGroupID,
-		Topic:    string(topics.WHATSAPP_STATUS),
-		MaxBytes: 10 * 1024 * 1024, // 10 MB
+		Brokers:     []string{url},
+		GroupID:     p.consumerGroupID,
+		Topic:       string(topics.WHATSAPP_STATUS),
+		MaxBytes:    10 * 1024 * 1024, // 10 MB
+		StartOffset: kafka.LastOffset,
 	})
 
 	go func() {

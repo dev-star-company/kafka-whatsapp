@@ -2,7 +2,6 @@ package kafka_whatsapp
 
 import (
 	"context"
-	"fmt"
 	"sync"
 
 	"github.com/dev-star-company/kafka-whatsapp/topics"
@@ -54,7 +53,6 @@ func (c *KafkaWhatsapper) ConnectToTopic(topic topics.Topic) (*kafka.Conn, error
 }
 
 func (c *KafkaWhatsapper) Connect(topic topics.Topic) (*kafka.Conn, error) {
-	fmt.Println(c.brokerUrl, string(topic))
 	conn, err := kafka.DialLeader(context.Background(), "tcp", c.brokerUrl, string(topic), 0)
 	if err != nil {
 		return nil, err
